@@ -1,0 +1,14 @@
+[Unit]
+Description=Password Pot
+After=network.target
+
+[Service]
+Type=simple
+User=nobody
+EnvironmentFile=/etc/passwd-pot
+TimeoutStartSec=0
+Restart=always
+ExecStart=/usr/bin/passwd-pot potter $PASSWD_POT_OPTIONS
+
+[Install]
+WantedBy=multi-user.target

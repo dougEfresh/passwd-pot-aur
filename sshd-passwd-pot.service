@@ -1,0 +1,17 @@
+[Unit]
+Description=OpenSSH HoneyPot server daemon
+Documentation=man:sshd(8) man:sshd_config(5)
+After=network.target
+
+[Service]
+Type=simple
+ExecStartPre=/opt/sshd-passwd-pot/bin/ssh-keygen -A
+EnvironmentFile=/etc/sshd-passwd-pot
+ExecStart=/opt/sshd-passwd-pot/sbin/sshd -D $OPTIONS
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=on-failure
+RestartSec=42s
+
+[Install]
+WantedBy=multi-user.target

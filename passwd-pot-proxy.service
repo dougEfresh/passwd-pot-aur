@@ -1,0 +1,14 @@
+[Unit]
+Description=Password Pot
+After=network.target
+
+[Service]
+Type=simple
+User=nobody
+EnvironmentFile=/etc/passwd-pot
+TimeoutStartSec=0
+Restart=always
+ExecStart=/usr/bin/passwd-pot proxy $PASSWD_POT_PROXY_OPTIONS
+
+[Install]
+WantedBy=multi-user.target
