@@ -1,5 +1,9 @@
 name: package
-on: [master]
+on:
+  push:
+    branches: [ master, ci ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
   passwdpot:
